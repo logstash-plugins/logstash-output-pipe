@@ -13,7 +13,7 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
   milestone 1
 
   # The format to use when writing events to the pipe. This value
-  # supports any string and can include %{name} and other dynamic
+  # supports any string and can include `%{name}` and other dynamic
   # strings.
   #
   # If this setting is omitted, the full json representation of the
