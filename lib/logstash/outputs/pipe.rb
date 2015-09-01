@@ -64,7 +64,6 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
         @logger.error("Excpetion while closing pipes.", :exception => e)
       end
     end
-    finished
   end
 
   private
