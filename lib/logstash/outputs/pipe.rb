@@ -54,8 +54,8 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
     close_stale_pipes
   end # def receive
 
-  def teardown
-    @logger.info("Teardown: closing pipes")
+  def close
+    @logger.info("close: closing pipes")
     @pipes.each do |command, pipe|
       begin
         drop_pipe(command)
