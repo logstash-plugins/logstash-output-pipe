@@ -32,7 +32,7 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
 
   public
   def receive(event)
-    return unless output?(event)
+    
 
     command = event.sprintf(@command)
 
