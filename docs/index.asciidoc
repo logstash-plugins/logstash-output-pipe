@@ -1,5 +1,6 @@
 :plugin: pipe
 :type: output
+:default_codec: plain
 
 ///////////////////////////////////////////
 START - GENERATED VARIABLES, DO NOT EDIT!
@@ -78,3 +79,5 @@ Close pipe that hasn't been used for TTL seconds. -1 or 0 means never close.
 
 [id="plugins-{type}s-{plugin}-common-options"]
 include::{include_path}/{type}.asciidoc[]
+
+:default_codec!:
