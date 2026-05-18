@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name            = 'logstash-output-pipe'
-  s.version         = ::File.read('version').split("\n").first
+  s.version         = ::File.read('VERSION').split("\n").first
   s.licenses        = ['Apache License (2.0)']
   s.summary         = "Pipes events to another program's standard input"
   s.description     = "This gem is a Logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/logstash-plugin install gemname. This gem is not a stand-alone program"
