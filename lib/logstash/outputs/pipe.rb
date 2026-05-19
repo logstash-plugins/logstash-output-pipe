@@ -19,9 +19,7 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
   # event will be written as a single line.
   config :message_format, :validate => :string
 
-  # Command line to launch and pipe to.
-  # Use an array to avoid shell injection: ["logger", "-t", "tag", "%{message}"]
-  # A plain string is accepted for backward compatibility but invokes /bin/sh -c.
+  # Command line to launch and pipe to
   config :command, :validate => :array, :required => true
 
   # Close pipe that hasn't been used for TTL seconds. -1 or 0 means never close.
@@ -34,7 +32,7 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
 
     @pipes = {}
     @last_stale_cleanup_cycle = Time.now
-    # @command is always Array after Logstash coercion
+    # @command is always Array after coercion
     @shell_mode = @original_params["command"].is_a?(String)
   end # def register
 
