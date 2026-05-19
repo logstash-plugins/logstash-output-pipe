@@ -1,5 +1,5 @@
 ## 3.1.0
-  - Add array support for `command` config [#NNN](https://github.com/logstash-plugins/logstash-output-pipe/pull/NNN)
+  - Add array support for `command` config [#5](https://github.com/logstash-plugins/logstash-output-pipe/pull/5)
 
 ## 3.0.6
   - Docs: Set the default_codec doc attribute.
