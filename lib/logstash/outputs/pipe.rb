@@ -19,22 +19,32 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
   # event will be written as a single line.
   config :message_format, :validate => :string
 
-  # Command line to launch and pipe to
-  config :command, :validate => :string, :required => true
+  # Command line to launch and pipe to.
+  # Use an array to avoid shell injection: ["logger", "-t", "tag", "%{message}"]
+  # A plain string is accepted for backward compatibility but invokes /bin/sh -c.
+  config :command, :validate => :array, :required => true
 
   # Close pipe that hasn't been used for TTL seconds. -1 or 0 means never close.
   config :ttl, :validate => :number, :default => 10
   public
   def register
+    if @command.empty?
+      raise LogStash::ConfigurationError, "The 'command' setting must not be empty"
+    end
+
     @pipes = {}
     @last_stale_cleanup_cycle = Time.now
+    # @command is always Array after Logstash coercion
+    @shell_mode = @original_params["command"].is_a?(String)
   end # def register
 
   public
   def receive(event)
-    
-
-    command = event.sprintf(@command)
+    command = if @shell_mode
+      event.sprintf(@command[0])
+    else
+      @command.map { |part| event.sprintf(part) }
+    end
 
     if @message_format
       output = event.sprintf(@message_format) + "\n"

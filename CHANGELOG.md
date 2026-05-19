@@ -1,3 +1,6 @@
+## 3.1.0
+  - Add array support for `command` config [#NNN](https://github.com/logstash-plugins/logstash-output-pipe/pull/NNN)
+
 ## 3.0.6
   - Docs: Set the default_codec doc attribute.
 
