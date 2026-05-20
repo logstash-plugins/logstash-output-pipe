@@ -32,17 +32,11 @@ class LogStash::Outputs::Pipe < LogStash::Outputs::Base
 
     @pipes = {}
     @last_stale_cleanup_cycle = Time.now
-    # @command is always Array after coercion
-    @shell_mode = @original_params["command"].is_a?(String)
   end # def register
 
   public
   def receive(event)
-    command = if @shell_mode
-      event.sprintf(@command[0])
-    else
-      @command.map { |part| event.sprintf(part) }
-    end
+    command = @command.map { |part| event.sprintf(part) }
 
     if @message_format
       output = event.sprintf(@message_format) + "\n"

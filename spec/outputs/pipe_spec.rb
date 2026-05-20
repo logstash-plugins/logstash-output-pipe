@@ -50,10 +50,10 @@ describe LogStash::Outputs::Pipe do
       end
     end
 
-    context "string command" do
+    context "string command coerced to array" do
       subject { LogStash::Outputs::Pipe.new("command" => "logger -t logstash_test %{message}") }
       let(:event)            { LogStash::Event.new("message" => payload) }
-      let(:expected_command) { "logger -t logstash_test #{payload}" }
+      let(:expected_command) { ["logger -t logstash_test #{payload}"] }
 
       include_examples "resolves command"
     end

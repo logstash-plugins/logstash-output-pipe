@@ -35,7 +35,7 @@ This plugin supports the following configuration options plus the <<plugins-{typ
 [cols="<,<,<",options="header",]
 |=======================================================================
 |Setting |Input type|Required
-| <<plugins-{type}s-{plugin}-command>> |<<string,string>> or <<array,array>>|Yes
+| <<plugins-{type}s-{plugin}-command>> |<<array,array>>|Yes
 | <<plugins-{type}s-{plugin}-message_format>> |<<string,string>>|No
 | <<plugins-{type}s-{plugin}-ttl>> |<<number,number>>|No
 |=======================================================================
@@ -49,7 +49,7 @@ output plugins.
 ===== `command`
 
   * This is a required setting.
-  * Value type is <<string,string>> or <<array,array>>
+  * Value type is <<array,array>>
   * There is no default value for this setting.
 
 Command line to launch and pipe to.
