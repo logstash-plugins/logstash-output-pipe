@@ -1,6 +1,6 @@
 ## 4.0.0
   - [BREAKING] `command` accept array form and no longer invokes a shell [#5](https://github.com/logstash-plugins/logstash-output-pipe/pull/5)
-  - Existing string commands with whitespace should be converted to array form (e.g. `command => ["tee", "-a", "file.txt"]`)
+  - Existing string commands with whitespace should be converted to array form
 
 ## 3.0.6
   - Docs: Set the default_codec doc attribute.
