@@ -1,3 +1,6 @@
+## 3.0.7
+  - [DOC] Document `command` string form limitation
+
 ## 3.0.6
   - Docs: Set the default_codec doc attribute.
 

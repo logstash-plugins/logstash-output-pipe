@@ -54,6 +54,12 @@ output plugins.
 
 Command line to launch and pipe to
 
+NOTE: `command` is interpreted by `/bin/sh`, so shell metacharacters
+(`;`, `|`, `>`, `&`, etc.) in field substitutions are parsed by the
+shell. If field values may contain such characters, it is recommended
+to upgrade to plugin version 4.0.0 or later, which accepts `command`
+as an array and runs the program directly without shell interpretation.
+
 [id="plugins-{type}s-{plugin}-message_format"]
 ===== `message_format` 
 
