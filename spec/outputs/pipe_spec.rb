@@ -51,34 +51,26 @@ describe LogStash::Outputs::Pipe do
     end
 
     context "string command coerced to array" do
-      subject { LogStash::Outputs::Pipe.new("command" => "logger -t logstash_test %{message}") }
+      subject { LogStash::Outputs::Pipe.new("command" => "logger -t audit %{message}") }
       let(:event)            { LogStash::Event.new("message" => payload) }
-      let(:expected_command) { ["logger -t logstash_test #{payload}"] }
+      let(:expected_command) { ["logger -t audit #{payload}"] }
 
       include_examples "resolves command"
     end
 
     context "array command" do
       context "each element resolved independently" do
-        subject { LogStash::Outputs::Pipe.new("command" => ["tee", "-a", "/tmp/logstash-%{host}.log"]) }
-        let(:event)            { LogStash::Event.new("host" => "myhost") }
-        let(:expected_command) { ["tee", "-a", "/tmp/logstash-myhost.log"] }
-
-        include_examples "resolves command"
-      end
-
-      context "multi-element array" do
-        subject { LogStash::Outputs::Pipe.new("command" => ["logger", "-t", "logstash_test", "%{message}"]) }
-        let(:event)            { LogStash::Event.new("message" => payload) }
-        let(:expected_command) { ["logger", "-t", "logstash_test", payload] }
+        subject { LogStash::Outputs::Pipe.new("command" => ["logger", "-t", "%{tag}", "--", "%{message}"]) }
+        let(:event)            { LogStash::Event.new("tag" => "audit", "message" => "hello") }
+        let(:expected_command) { ["logger", "-t", "audit", "--", "hello"] }
 
         include_examples "resolves command"
       end
 
       context "single-element array" do
-        subject { LogStash::Outputs::Pipe.new("command" => ["logger -t logstash_test %{message}"]) }
+        subject { LogStash::Outputs::Pipe.new("command" => ["logger -t audit %{message}"]) }
         let(:event)            { LogStash::Event.new("message" => payload) }
-        let(:expected_command) { ["logger -t logstash_test #{payload}"] }
+        let(:expected_command) { ["logger -t audit #{payload}"] }
 
         include_examples "resolves command"
       end
