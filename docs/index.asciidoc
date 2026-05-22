@@ -35,7 +35,7 @@ This plugin supports the following configuration options plus the <<plugins-{typ
 [cols="<,<,<",options="header",]
 |=======================================================================
 |Setting |Input type|Required
-| <<plugins-{type}s-{plugin}-command>> |<<string,string>>|Yes
+| <<plugins-{type}s-{plugin}-command>> |<<array,array>>|Yes
 | <<plugins-{type}s-{plugin}-message_format>> |<<string,string>>|No
 | <<plugins-{type}s-{plugin}-ttl>> |<<number,number>>|No
 |=======================================================================
@@ -46,22 +46,27 @@ output plugins.
 &nbsp;
 
 [id="plugins-{type}s-{plugin}-command"]
-===== `command` 
+===== `command`
 
   * This is a required setting.
-  * Value type is <<string,string>>
+  * Value type is <<array,array>>
   * There is no default value for this setting.
 
-Command line to launch and pipe to
+Command line to launch and pipe to.
 
-NOTE: `command` is passed to `/bin/sh`, so any metacharacters
-(`;`, `|`, `>`, `&`, etc.) in field substitutions will be interpreted by the shell.
-If `command` contains such character(s), it is recommended
-to upgrade to plugin version 4.0.0 or later, which accepts `command`
-as an array and invokes the program directly bypassing shell interpretation.
+Example:
+
+[source,ruby]
+----
+output {
+  pipe {
+    command => ["tee", "-a", "/tmp/logstash-%{host}.log"]
+  }
+}
+----
 
 [id="plugins-{type}s-{plugin}-message_format"]
-===== `message_format` 
+===== `message_format`
 
   * Value type is <<string,string>>
   * There is no default value for this setting.
@@ -74,7 +79,7 @@ If this setting is omitted, the full json representation of the
 event will be written as a single line.
 
 [id="plugins-{type}s-{plugin}-ttl"]
-===== `ttl` 
+===== `ttl`
 
   * Value type is <<number,number>>
   * Default value is `10`
