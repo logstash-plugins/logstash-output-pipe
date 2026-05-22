@@ -59,6 +59,7 @@ NOTE: `command` is passed to `/bin/sh`, so any metacharacters
 If `command` contains such character(s), it is recommended
 to upgrade to plugin version 4.0.0 or later, which accepts `command`
 as an array and invokes the program directly bypassing shell interpretation.
+
 [id="plugins-{type}s-{plugin}-message_format"]
 ===== `message_format` 
 
